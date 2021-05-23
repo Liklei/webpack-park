@@ -15,6 +15,8 @@
 
 - 静态资源（Static Assets）: 可以将所有的静态资源，如 js、css、图片、字体等，导入到应用程序中，然后由 webpack 使用 hash 重命名需要的资源文件，而无需为文件 URL 增添 hash 而使用 hack 脚本，并且一个资源还能依赖其他资源。
 
+- [webpack历史](https://segmentfault.com/a/1190000019650480)
+
 #### 二、webpack配置（从零到一搭建项目）
 
 * 1、安装webpack
@@ -32,8 +34,7 @@
 - babel  
 * Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法
 * babel原理：ES6代码输入 ==》 babylon进行解析 ==》 得到AST==》 plugin用babel-traverse对AST树进行遍历转译 ==》 得到新的AST树==》 用babel-generator通过AST树生成ES5代码
-
-https://juejin.cn/post/6962861837800964133
+* []()https://juejin.cn/post/6962861837800964133
 
 - url-loader， css-loader， file-loader等loader
 
@@ -51,8 +52,6 @@ https://juejin.cn/post/6962861837800964133
 - 项目（特别是类库）只有 js，而没有其他的静态资源文件，使用 webpack 就有点大才小用了，因为 webpack bundle 文件的体积略大，运行略慢，可读性略低。
 
 
-webpack文档： https://v4.webpack.docschina.org/concepts/
-入门指南： https://zhaoda.net/webpack-handbook/module-system.html
 
 
 
@@ -80,25 +79,16 @@ webpack文档： https://v4.webpack.docschina.org/concepts/
 
 
 
-###
+
+### 文档资源
+
 - [系列](https://segmentfault.com/a/1190000040008841)
-____________________________
+- [webpack基础配置](https://www.toptal.com/javascript/a-guide-to-managing-webpack-dependencies)
+- [webpack文档](https://v4.webpack.docschina.org/concepts/)
+- [入门指南](https://zhaoda.net/webpack-handbook/module-system.html)
+- [入门到进阶， 各个api讲解](https://www.mdnice.com/writing/7347c59a220c402495e3f4086911a1af)
 
 
-
-####  WebPack入门
-
-#### 入门指南：
-#### 一、webpack概念
-#### 二、webpack配置（从零到一搭建项目）
-#### 三、webpack、rollup使用建议
-
-#### 进阶指南
-#### 一、webpack实现原理
-#### 二、Tree Shaking性能优化实践
-#### 三、loader原理解析（手写）
-#### 四、Plugin原理解析（手写）
-#### 五、Chunk 分包规则
 
 
 
