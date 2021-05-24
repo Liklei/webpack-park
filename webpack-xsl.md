@@ -21,27 +21,46 @@
 
 * 1、安装webpack
     通过 yarn add webpack webpack-cli --dev （或npm）
+
     * 1.1 为什么需要安装webpack-cli ？
         - webpack4 与 webpack3相比webpack4将cli单独分离了出来。
         - 在package.json中script配置dev: webpack --mode development，当执行npm run dev相当于执行webpack --mode development，
         webpack.cmd执行时会判断当前目录下是否存在node执行程序，如果存在就使用当前node进程执行node_modules/webpack/bin/webpack.js，如果当前目录下不存在node进程，则使用全局（也就是本地）node执行node_modules/webpack/bin/webpack.js文件
-        - ![示例1](./1.png)
+        - ![示例1](./images/1.png)
+        - ![示例2](./images/2.png)
         - node_modules/webpack/bin/webpack.js首先会判断是否安装了webpack-cli模块，如果没有安装webpack-cli模块就会引导用户去安装，如果已经安装了webpack-cli模块，就会去执行node_modules\webpack-cli\bin\cli.js
-         - ![示例22](./2.png)
-    * 1.2 webpack-cli的作用 ？     
+
+         - 源码解析：
+         - ![示例31](./images/3.1.png) 
+         - ![示例32](./images/3.2.png) 
+         - ![示例33](./images/3.3.png) 
+         
+    * 1.2 cli作用
+        - 使用命令行工具包 yargs，使命令行界面更优雅并对参数配置并解析（process.args）
+        - 分析命令参数，对各个参数进行转换，统一组成新的编译配置项
+        - 引用webpack，根据参数项对源代码进行编译和构建
 
 * 2、安装重要的依赖包
+
 - babel  
 * Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法
 * babel原理：ES6代码输入 ==》 babylon进行解析 ==》 得到AST==》 plugin用babel-traverse对AST树进行遍历转译 ==》 得到新的AST树==》 用babel-generator通过AST树生成ES5代码
-* []()https://juejin.cn/post/6962861837800964133
+* [babel AST](https://juejin.cn/post/6962861837800964133)
 
 - url-loader， css-loader， file-loader等loader
-
 - uglifyjs-webpack-plugin 等插件
 
 
 * 3、如何配置webpack.config.js
+  - entry  入口
+  - export 出口
+  - loader 单一职责
+  - plugin 合理使用插件
+
+* 4、我们项目中配置
+  - vue create （vue-cli已经升级无webpack配置，必须通过vue.config.js。与CRA项目一样eject，可以inspect）
+  - vue init webpack vue_project  
+
 
 #### 三、webpack、rollup使用建议
 
