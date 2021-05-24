@@ -23,6 +23,7 @@
     通过 yarn add webpack webpack-cli --dev （或npm）
 
     * 1.1 为什么需要安装webpack-cli ？
+        - ![示例0](./images/0.png)
         - webpack4 与 webpack3相比webpack4将cli单独分离了出来。
         - 在package.json中script配置dev: webpack --mode development，当执行npm run dev相当于执行webpack --mode development，
         webpack.cmd执行时会判断当前目录下是否存在node执行程序，如果存在就使用当前node进程执行node_modules/webpack/bin/webpack.js，如果当前目录下不存在node进程，则使用全局（也就是本地）node执行node_modules/webpack/bin/webpack.js文件
