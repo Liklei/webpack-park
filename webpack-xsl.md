@@ -45,7 +45,7 @@
 
 - babel  
 * Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法
-* babel原理：ES6代码输入 ==》 babylon进行解析 ==》 得到AST==》 plugin用babel-traverse对AST树进行遍历转译 ==》 得到新的AST树==》 用babel-generator通过AST树生成ES5代码
+* babel转换步骤：ES6代码输入 ==》 @babel/parser进行解析 ==》 得到AST==》 plugin用babel-traverse对AST树进行遍历转译 ==》 得到新的AST树==》 用babel-generator通过AST树生成ES5代码
 * [babel AST](https://juejin.cn/post/6962861837800964133)
 
 - url-loader， css-loader， file-loader等loader
