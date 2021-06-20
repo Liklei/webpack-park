@@ -79,12 +79,6 @@
 
 ####  一、webpack实现原理
 
-* 分析依赖
-
-* ES6转ES5
-
-* 替换exports和require
-
 
 #### 二、Tree Shaking性能优化实践
 
@@ -107,6 +101,7 @@
 - [webpack文档](https://v4.webpack.docschina.org/concepts/)
 - [入门指南](https://zhaoda.net/webpack-handbook/module-system.html)
 - [入门到进阶， 各个api讲解](https://www.mdnice.com/writing/7347c59a220c402495e3f4086911a1af)
+- [ Webpack 核心原理 ](https://mp.weixin.qq.com/s/SbJNbSVzSPSKBe2YStn2Zw)
 
 
 
