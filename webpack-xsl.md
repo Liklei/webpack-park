@@ -143,6 +143,7 @@ entry 及 entry 触达到的模块，组合成一个 chunk
 - [入门指南](https://zhaoda.net/webpack-handbook/module-system.html)
 - [入门到进阶， 各个api讲解](https://www.mdnice.com/writing/7347c59a220c402495e3f4086911a1af)
 - [ Webpack 核心原理 ](https://mp.weixin.qq.com/s/SbJNbSVzSPSKBe2YStn2Zw)
+- [tapable - 钩子理解](https://zhuanlan.zhihu.com/p/79221553)
 
 
 
