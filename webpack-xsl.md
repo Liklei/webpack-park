@@ -115,6 +115,11 @@
 entry 及 entry 触达到的模块，组合成一个 chunk
 使用动态引入语句引入的模块，各自组合成一个 chunk
 
+#### 总结
+* 设计任务：内容转换 + 资源合并
+*  架构简化为：compiler + compilation + plugins, 理解这三个核心对象的设计、职责、协作 ：
+* webpack 运行过程中只会有一个 compiler ；而每次编译 —— 包括调用 compiler.run 函数或者 watch = true 时文件发生变更，都会创建一个 compilation 对象
+
 
 #### 二、Tree Shaking性能优化实践
 
