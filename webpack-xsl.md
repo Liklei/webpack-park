@@ -79,14 +79,50 @@
 
 ####  一、webpack实现原理
 
+#### 初始化阶段
+- 将 process.args + webpack.config.js 合并成用户配置
+- 调用 validateSchema 校验配置
+- 调用 getNormalizedWebpackOptions + applyWebpackOptionsBaseDefaults 合并出最终配置
+- 创建 compiler 对象
+- 遍历用户定义的 plugins 集合，执行插件的 apply 方法
+- 调用 new WebpackOptionsApply().process 方法，加载各种内置插件
+
+- 主要逻辑集中在 WebpackOptionsApply 类，webpack 内置了数百个插件，这些插件并不需要我们手动配置，WebpackOptionsApply 会在初始化阶段根据配置内容动态注入对应的插件，包括：
+
+- 注入 EntryOptionPlugin 插件，处理 entry 配置
+- 根据 devtool 值判断后续用那个插件处理 sourcemap，可选值：EvalSourceMapDevToolPlugin、SourceMapDevToolPlugin、EvalDevToolModulePlugin
+- 注入 RuntimePlugin ，用于根据代码内容动态注入 webpack 运行时
+
+#### 构建阶段
+- 调用 handleModuleCreate ，根据文件类型构建 module 子类
+- 调用 loader-runner 仓库的 runLoaders 转译 module 内容，通常是从各类资源类型转译为 JavaScript 文本
+- 调用 acorn 将 JS 文本解析为AST
+- 遍历 AST，触发各种钩子
+  a. 在 HarmonyExportDependencyParserPlugin 插件监听 exportImportSpecifier 钩子，解读 JS 文本对应的资源依赖
+  b. 调用 module 对象的 addDependency 将依赖对象加入到 module 依赖列表中
+- AST 遍历完毕后，调用 module.handleParseResult 处理模块依赖
+- 对于 module 新增的依赖，调用 handleModuleCreate ，控制流回到第一步
+- 所有依赖都解析完毕后，构建阶段结束
+
+#### 生成阶段
+- 构建本次编译的 ChunkGraph 对象；
+- 遍历 compilation.modules 集合，将 module 按 entry/动态引入 的规则分配给不同的 Chunk 对象；
+- compilation.modules 集合遍历完毕后，得到完整的 chunks 集合对象，调用 createXxxAssets 方法
+- createXxxAssets 遍历 module/chunk ，调用 compilation.emitAssets 方法将 assets 信息记录到 compilation.assets 对象中
+- 触发 seal 回调，控制流回到 compiler 对象
+
+这一步的关键逻辑是将 module 按规则组织成 chunks ，webpack 内置的 chunk 封装规则比较简单：
+entry 及 entry 触达到的模块，组合成一个 chunk
+使用动态引入语句引入的模块，各自组合成一个 chunk
+
 
 #### 二、Tree Shaking性能优化实践
 
 
-#### 三、loader原理解析（手写）
+#### 三、loader原理解析
 
 
-#### 四、Plugin原理解析（手写）
+#### 四、Plugin原理解析
 
 
 #### 五、Chunk 分包规则
